@@ -46,12 +46,14 @@ const Room = () => {
   };
   return (
     <main className="container main-container">
-      {messages.map(message => (
-        <div key={message.$id} className="message-container">
-          <div className="message-created-at">{message.$createdAt}</div>
-          <div>{message.body}</div>
-        </div>
-      ))}
+      <div className="messages">
+        {messages.map(message => (
+          <div key={message.$id} className="message-container">
+            <div className="message-created-at">{message.$createdAt}</div>
+            <div>{message.body}</div>
+          </div>
+        ))}
+      </div>
       <form id="send-message" onSubmit={handleSubmit}>
         <textarea
           autoFocus

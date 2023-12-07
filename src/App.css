@@ -214,7 +214,7 @@ table {
 /* Chat room */
 .main-container {
   min-width: 70rem;
-  min-height: 90vh;
+  height: 90vh;
   background-color: var(--clr-primary, rgba(0, 0, 0, 0.7));
   color: var(--clr-neutral-000, #fff);
   border-radius: var(--br-default, 0.4em);
@@ -225,6 +225,11 @@ table {
   gap: 1em;
 }
 
+.messages {
+  height: 100%;
+  overflow-y: scroll;
+}
+
 .message-container {
   --_padding: 1em;
   width: fit-content;
@@ -233,6 +238,7 @@ table {
   color: var(--clr-neutral-000, #fff);
   padding: var(--_padding, var(--p-default));
   border-radius: 0.7em 0.7em 0.7em 0;
+  margin-block: var(--p-default);
 }
 
 .message-created-at {
