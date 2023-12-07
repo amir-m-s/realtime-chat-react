@@ -35,6 +35,12 @@
   --bp-ldesktop: 1200px;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body,
 div,
@@ -138,6 +144,9 @@ section {
   display: block;
 }
 body {
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
   line-height: 1;
   font-family: var(--ff-default);
   background: rgb(52, 73, 94);
