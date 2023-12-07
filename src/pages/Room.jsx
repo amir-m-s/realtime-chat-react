@@ -6,7 +6,7 @@ import {
 } from "../appwriteConfig";
 
 // Generate ID for data
-import { ID } from "appwrite";
+import { ID, Query } from "appwrite";
 
 const Room = () => {
   const [messages, setMessages] = useState([]);
@@ -37,7 +37,8 @@ const Room = () => {
   const getMessages = async () => {
     const response = await databases.listDocuments(
       DATABASE_ID,
-      COLLECTION_ID_MESSAGES
+      COLLECTION_ID_MESSAGES,
+      [Query.limit(45)]
     );
 
     console.log(response);
@@ -53,6 +54,7 @@ const Room = () => {
       ))}
       <form id="send-message" onSubmit={handleSubmit}>
         <textarea
+          autoFocus
           className="message-textarea"
           required
           maxLength={1000}
