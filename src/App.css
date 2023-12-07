@@ -140,6 +140,12 @@ section {
 body {
   line-height: 1;
   font-family: var(--ff-default);
+  background: rgb(52, 73, 94);
+  background: linear-gradient(
+    90deg,
+    var(--clr-primary) 0%,
+    var(--clr-accent) 100%
+  );
 }
 ol,
 ul {
