@@ -21,14 +21,14 @@ const Room = () => {
     setMessages(response.documents);
   };
   return (
-    <>
+    <main className="container main-container">
       {messages.map(message => (
-        <div key={message.$id}>
-          <div>{message.$createdAt}</div>
+        <div key={message.$id} className="message-container">
+          <div className="message-created-at">{message.$createdAt}</div>
           <div>{message.body}</div>
         </div>
       ))}
-    </>
+    </main>
   );
 };
 

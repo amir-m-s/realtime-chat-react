@@ -3,6 +3,7 @@
 :root {
   /* Colors */
   --clr-primary: hsl(210, 27%, 29%);
+  --clr-primary-transparent: rgba(54, 74, 94, 0.7);
   --clr-secondary: hsl(37, 90%, 51%);
   --clr-accent: hsl(204, 70%, 53%);
   --clr-neutral-700: hsl(210, 29%, 24%);
@@ -17,10 +18,12 @@
 
   /* Font size */
   --fs-default: 16px;
+  --fs-small: 0.65rem;
 
   /* Font weight */
-  --ff-normal: 500;
-  --ff-bold: 700;
+  --fw-light: 100;
+  --fw-normal: 500;
+  --fw-bold: 700;
 
   /* Box shadow */
   --bs-default: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -33,6 +36,12 @@
   --bp-laptop: 768px;
   --bp-desktop: 992px;
   --bp-ldesktop: 1200px;
+
+  /* Border radius */
+  --br-default: 0.4em;
+
+  /* Padding */
+  --p-default: 0.5em;
 }
 
 *,
@@ -174,4 +183,41 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+/* Utilities */
+
+/* Container */
+.container {
+  width: 85%;
+  margin-inline: auto;
+}
+
+/* Chat room */
+.main-container {
+  min-width: 70rem;
+  background-color: var(--clr-primary, rgba(0, 0, 0, 0.7));
+  color: var(--clr-neutral-000, #fff);
+  border-radius: var(--br-default, 0.4em);
+  padding: calc(var(--p-default, 0.5em) * 2.5);
+  display: grid;
+  gap: 1em;
+  justify-content: start;
+}
+
+.message-container {
+  --_padding: 1em;
+  width: fit-content;
+  background-color: var(--clr-accent, steelblue);
+  color: var(--clr-neutral-000, #fff);
+  padding: var(--_padding, var(--p-default));
+  border-radius: 0.7em 0.7em 0.7em 0;
+}
+
+.message-created-at {
+  font-size: var(--fs-small);
+  padding: var(--p-default) 0;
+  color: var(--clr-neutral-020);
+  font-weight: var(--fw-light);
+  letter-spacing: 0.2ch;
 }
