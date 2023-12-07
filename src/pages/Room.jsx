@@ -30,6 +30,7 @@ const Room = () => {
     );
 
     console.log("Created: ", response);
+    setMessages([...messages, payload]);
     setMessageBody("");
   };
 
