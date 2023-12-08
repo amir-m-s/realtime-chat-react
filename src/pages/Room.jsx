@@ -50,12 +50,31 @@ const Room = () => {
 
     setMessages(response.documents);
   };
+
+  const deleteMessages = async messageId => {
+    databases.deleteDocument(DATABASE_ID, COLLECTION_ID_MESSAGES, messageId);
+    setMessages(prevState =>
+      messages.filter(message => message.$id !== messageId)
+    );
+  };
+
   return (
     <main className="container main-container">
       <div className="messages">
         {messages.map(message => (
           <div key={message.$id} className="message-container">
-            <div className="message-created-at">{message.$createdAt}</div>
+            <div className="message-header">
+              <div className="message-created-at">{message.$createdAt}</div>
+              <div className="btn-group">
+                <button
+                  type="button"
+                  className="btn delete-btn"
+                  onClick={() => deleteMessages(message.$id)}
+                >
+                  &times;
+                </button>
+              </div>
+            </div>
             <div>{message.body}</div>
           </div>
         ))}

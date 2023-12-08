@@ -213,8 +213,10 @@ table {
 /* Buttons */
 .btn {
   cursor: pointer;
-  font-size: 1em;
+  font-size: 1rem;
   padding: var(--p-default) calc(var(--p-default) * 2);
+  background: transparent;
+  border: none;
 }
 
 .btn-accent {
@@ -257,6 +259,18 @@ table {
   margin-block: var(--p-default);
 }
 
+.message-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.delete-btn {
+  color: #fff;
+  font-size: 1.5em;
+  padding: 0;
+}
 .message-created-at {
   font-size: var(--fs-small);
   padding: var(--p-default) 0;
