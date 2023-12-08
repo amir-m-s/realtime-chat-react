@@ -22,6 +22,7 @@ const Room = () => {
     let payload = {
       body: messageBody,
     };
+
     let response = await databases.createDocument(
       DATABASE_ID,
       COLLECTION_ID_MESSAGES,
@@ -29,8 +30,14 @@ const Room = () => {
       payload
     );
 
-    console.log("Created: ", response);
-    setMessages([...messages, payload]);
+    setMessages([
+      ...messages,
+      {
+        $id: response.$id,
+        $createdAt: response.$createdAt,
+        body: response.body,
+      },
+    ]);
     setMessageBody("");
   };
 
@@ -41,7 +48,6 @@ const Room = () => {
       [Query.limit(45)]
     );
 
-    console.log(response);
     setMessages(response.documents);
   };
   return (
