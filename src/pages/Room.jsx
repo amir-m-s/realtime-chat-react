@@ -84,7 +84,7 @@ const Room = () => {
       DATABASE_ID,
       COLLECTION_ID_MESSAGES,
       // Set limit for loaded messages to prevent too much memory usage
-      [Query.limit(45)]
+      [Query.limit(45), Query.orderDesc("$createdAt")]
     );
 
     // Reset messages array from messages saved in database
