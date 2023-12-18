@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {
+import client, {
   databases,
   DATABASE_ID,
   COLLECTION_ID_MESSAGES,
@@ -14,6 +14,35 @@ const Room = () => {
 
   useEffect(() => {
     getMessages();
+
+    // Subscribe to Messages event in order to get realtime responses!
+    const unsubscribe = client.subscribe(
+      `databases.${DATABASE_ID}.collections.${COLLECTION_ID_MESSAGES}.documents`,
+      response => {
+        if (
+          response.events.includes(
+            "databases.*.collections.*.documents.*.create"
+          )
+        ) {
+          // setMessages(prevState => [...prevState, response.payload]);
+          // Use getMessages instead of setting messages again to prevent rendering twice and causing errors
+          getMessages();
+        }
+
+        if (
+          response.events.includes(
+            "databases.*.collections.*.documents.*.delete"
+          )
+        ) {
+          setMessages(prevState =>
+            prevState.filter(message => message.$id !== response.payload.$id)
+          );
+        }
+      }
+    );
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const handleSubmit = async e => {
@@ -30,8 +59,8 @@ const Room = () => {
       payload
     );
 
-    setMessages([
-      ...messages,
+    setMessages(prevState => [
+      ...prevState,
       {
         $id: response.$id,
         $createdAt: response.$createdAt,
@@ -52,9 +81,10 @@ const Room = () => {
   };
 
   const deleteMessages = async messageId => {
-    databases.deleteDocument(DATABASE_ID, COLLECTION_ID_MESSAGES, messageId);
-    setMessages(prevState =>
-      messages.filter(message => message.$id !== messageId)
+    await databases.deleteDocument(
+      DATABASE_ID,
+      COLLECTION_ID_MESSAGES,
+      messageId
     );
   };
 
