@@ -12,6 +12,8 @@ const Room = () => {
   const [messages, setMessages] = useState([]);
   const [messageBody, setMessageBody] = useState("");
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     getMessages();
 
@@ -89,6 +91,7 @@ const Room = () => {
 
     // Reset messages array from messages saved in database
     setMessages(response.documents);
+    setLoading(false);
   };
 
   // Delete message from database
@@ -102,6 +105,7 @@ const Room = () => {
 
   return (
     <main className="container main-container">
+      {loading && <div className="loading">Loading Messages...</div>}
       <div className="messages">
         {messages.map(message => (
           <div key={message.$id} className="message-container">

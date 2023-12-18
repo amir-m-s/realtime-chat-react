@@ -203,7 +203,13 @@ table {
   background: var(--clr-accent-light);
 }
 /* Utilities */
-
+.loading {
+  display: grid;
+  place-content: center;
+  position: fixed;
+  pointer-events: none;
+  inset: 0;
+}
 /* Container */
 .container {
   width: 85%;
