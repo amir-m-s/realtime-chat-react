@@ -5,7 +5,7 @@ import client, {
   COLLECTION_ID_MESSAGES,
 } from "../appwriteConfig";
 
-// Generate ID for data
+// import useful tools to work with database more easily
 import { ID, Query } from "appwrite";
 
 const Room = () => {
@@ -19,6 +19,7 @@ const Room = () => {
     const unsubscribe = client.subscribe(
       `databases.${DATABASE_ID}.collections.${COLLECTION_ID_MESSAGES}.documents`,
       response => {
+        // If a message gets created at database, Update messages in realtime
         if (
           response.events.includes(
             "databases.*.collections.*.documents.*.create"
@@ -29,6 +30,7 @@ const Room = () => {
           getMessages();
         }
 
+        // If a message gets deleted in database; then update messages in realtime
         if (
           response.events.includes(
             "databases.*.collections.*.documents.*.delete"
@@ -41,17 +43,21 @@ const Room = () => {
       }
     );
     return () => {
+      // Unsubscribe after updating messages to prevent rendering problems and other bugs
       unsubscribe();
     };
   }, []);
 
+  // Submit function
   const handleSubmit = async e => {
     e.preventDefault();
 
+    // Payload that we'll send to server
     let payload = {
       body: messageBody,
     };
 
+    // Create a document in database
     let response = await databases.createDocument(
       DATABASE_ID,
       COLLECTION_ID_MESSAGES,
@@ -59,6 +65,7 @@ const Room = () => {
       payload
     );
 
+    // Add messages to messages array
     setMessages(prevState => [
       ...prevState,
       {
@@ -67,19 +74,24 @@ const Room = () => {
         body: response.body,
       },
     ]);
+    // Reset message input value
     setMessageBody("");
   };
 
+  // Get messages from database
   const getMessages = async () => {
     const response = await databases.listDocuments(
       DATABASE_ID,
       COLLECTION_ID_MESSAGES,
+      // Set limit for loaded messages to prevent too much memory usage
       [Query.limit(45)]
     );
 
+    // Reset messages array from messages saved in database
     setMessages(response.documents);
   };
 
+  // Delete message from database
   const deleteMessages = async messageId => {
     await databases.deleteDocument(
       DATABASE_ID,
