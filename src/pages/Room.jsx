@@ -71,14 +71,15 @@ const Room = () => {
     );
 
     // Add messages to messages array
-    setMessages(prevState => [
-      ...prevState,
-      {
-        $id: response.$id,
-        $createdAt: response.$createdAt,
-        body: response.body,
-      },
-    ]);
+    // setMessages(prevState => [
+    //   ...prevState,
+    //   {
+    //     $id: response.$id,
+    //     $createdAt: response.$createdAt,
+    //     body: response.body,
+    //   },
+    // ]);
+    getMessages();
     // Reset message input value
     setMessageBody("");
   };
