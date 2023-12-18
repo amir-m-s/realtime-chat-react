@@ -251,12 +251,14 @@ table {
 .message-container {
   --_padding: 1em;
   width: fit-content;
-  height: fit-content;
+  /* height: fit-content; */
+  max-width: 90%;
   background-color: var(--clr-accent, steelblue);
   color: var(--clr-neutral-000, #fff);
   padding: var(--_padding, var(--p-default));
   border-radius: 0.7em 0.7em 0.7em 0;
   margin-block: var(--p-default);
+  overflow-wrap: break-word;
 }
 
 .message-header {
@@ -264,6 +266,10 @@ table {
   align-items: center;
   justify-content: space-between;
   gap: 1em;
+}
+
+.message-body {
+  line-height: 2;
 }
 
 .delete-btn {

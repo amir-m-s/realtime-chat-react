@@ -117,7 +117,7 @@ const Room = () => {
                 </button>
               </div>
             </div>
-            <div>{message.body}</div>
+            <div className="message-body">{message.body}</div>
           </div>
         ))}
       </div>
