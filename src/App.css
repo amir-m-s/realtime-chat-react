@@ -231,7 +231,7 @@ table {
 
 /* Chat room */
 .main-container {
-  min-width: 70rem;
+  width: 85%;
   height: 90vh;
   background-color: var(--clr-primary, rgba(0, 0, 0, 0.7));
   color: var(--clr-neutral-000, #fff);
