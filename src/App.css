@@ -221,6 +221,7 @@ table {
   padding: var(--p-default) calc(var(--p-default) * 2);
   background: transparent;
   border: none;
+  transition: var(--transition-default);
 }
 
 .btn-circle {
@@ -232,10 +233,18 @@ table {
   border-radius: 0.4em;
 }
 
+.btn-primary {
+  background-color: var(--clr-primary);
+  color: var(--clr-neutral-000);
+}
+
+.btn-primary:hover {
+  background-color: rgba(54, 74, 94, 0.9);
+}
+
 .btn-accent {
   background-color: var(--clr-accent);
   color: var(--clr-neutral-000);
-  transition: var(--transition-default);
 }
 
 .btn-accent:hover {
@@ -244,6 +253,7 @@ table {
 
 /* Chat room */
 .main-header {
+  position: relative;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0.25em 0;
   & .container {
@@ -257,9 +267,6 @@ table {
       color: var(--clr-neutral-000);
       text-decoration: none;
     }
-  }
-
-  & .btn {
   }
 }
 
@@ -346,5 +353,32 @@ table {
     border: none;
     border-radius: 1px;
     border-radius: 0 var(--br-default) var(--br-default) 0;
+  }
+}
+
+.user-control {
+  & .dropdown {
+    min-width: 15rem;
+    position: absolute;
+    top: 100%;
+    right: 5%;
+    padding: 0.25em 0;
+    background-color: rgba(100%, 100%, 100%, 0.8);
+    transform: translateY(-30%);
+    pointer-events: none;
+    opacity: 0;
+    transition: var(--transition-default);
+
+    & .dropdown-container {
+      display: grid;
+      justify-content: center;
+      gap: 1em;
+    }
+  }
+
+  & .dropdown-visible {
+    transform: translateY(0);
+    pointer-events: all;
+    opacity: 1;
   }
 }
