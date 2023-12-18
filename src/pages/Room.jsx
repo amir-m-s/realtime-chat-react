@@ -104,41 +104,43 @@ const Room = () => {
   };
 
   return (
-    <main className="container main-container">
-      {loading && <div className="loading">Loading Messages...</div>}
-      <div className="messages">
-        {messages.map(message => (
-          <div key={message.$id} className="message-container">
-            <div className="message-header">
-              <div className="message-created-at">{message.$createdAt}</div>
-              <div className="btn-group">
-                <button
-                  type="button"
-                  className="btn delete-btn"
-                  onClick={() => deleteMessages(message.$id)}
-                >
-                  &times;
-                </button>
+    <>
+      <main className="container main-container">
+        {loading && <div className="loading">Loading Messages...</div>}
+        <div className="messages">
+          {messages.map(message => (
+            <div key={message.$id} className="message-container">
+              <div className="message-header">
+                <div className="message-created-at">{message.$createdAt}</div>
+                <div className="btn-group">
+                  <button
+                    type="button"
+                    className="btn delete-btn"
+                    onClick={() => deleteMessages(message.$id)}
+                  >
+                    &times;
+                  </button>
+                </div>
               </div>
+              <div className="message-body">{message.body}</div>
             </div>
-            <div className="message-body">{message.body}</div>
-          </div>
-        ))}
-      </div>
-      <form id="send-message" onSubmit={handleSubmit}>
-        <textarea
-          autoFocus
-          className="message-textarea"
-          required
-          maxLength={1000}
-          placeholder="Your Message..."
-          rows="1"
-          onChange={e => setMessageBody(e.target.value)}
-          value={messageBody}
-        ></textarea>
-        <input type="submit" value="Send" className="btn btn-accent" />
-      </form>
-    </main>
+          ))}
+        </div>
+        <form id="send-message" onSubmit={handleSubmit}>
+          <textarea
+            autoFocus
+            className="message-textarea"
+            required
+            maxLength={1000}
+            placeholder="Your Message..."
+            rows="1"
+            onChange={e => setMessageBody(e.target.value)}
+            value={messageBody}
+          ></textarea>
+          <input type="submit" value="Send" className="btn btn-accent" />
+        </form>
+      </main>
+    </>
   );
 };
 
