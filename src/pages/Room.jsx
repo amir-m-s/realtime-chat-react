@@ -8,6 +8,9 @@ import client, {
 // import useful tools to work with database more easily
 import { ID, Query } from "appwrite";
 
+// Components
+import Header from "../components/Header";
+
 const Room = () => {
   const [messages, setMessages] = useState([]);
   const [messageBody, setMessageBody] = useState("");
@@ -105,6 +108,7 @@ const Room = () => {
 
   return (
     <>
+      <Header />
       <main className="container main-container">
         {loading && <div className="loading">Loading Messages...</div>}
         <div className="messages">

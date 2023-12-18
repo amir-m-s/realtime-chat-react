@@ -154,8 +154,6 @@ section {
   display: block;
 }
 body {
-  display: grid;
-  place-content: center;
   min-height: 100vh;
   line-height: 1;
   font-family: var(--ff-default);
@@ -225,6 +223,11 @@ table {
   border: none;
 }
 
+.btn-circle {
+  border-radius: 50%;
+  aspect-ratio: 1;
+}
+
 .btn-accent {
   background-color: var(--clr-accent);
   color: var(--clr-neutral-000);
@@ -236,9 +239,27 @@ table {
 }
 
 /* Chat room */
+.main-header {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0;
+  & .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  & h2 {
+    & a {
+      color: var(--clr-neutral-000);
+      text-decoration: none;
+    }
+  }
+}
+
 .main-container {
   width: 85%;
   height: 90vh;
+  margin-block: 0.5em;
   background-color: var(--clr-primary, rgba(0, 0, 0, 0.7));
   color: var(--clr-neutral-000, #fff);
   border-radius: var(--br-default, 0.4em);
