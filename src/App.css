@@ -228,6 +228,10 @@ table {
   aspect-ratio: 1;
 }
 
+.btn-rounded {
+  border-radius: 0.4em;
+}
+
 .btn-accent {
   background-color: var(--clr-accent);
   color: var(--clr-neutral-000);
@@ -241,7 +245,7 @@ table {
 /* Chat room */
 .main-header {
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 0;
+  padding: 0.25em 0;
   & .container {
     display: flex;
     justify-content: space-between;
@@ -253,6 +257,9 @@ table {
       color: var(--clr-neutral-000);
       text-decoration: none;
     }
+  }
+
+  & .btn {
   }
 }
 
